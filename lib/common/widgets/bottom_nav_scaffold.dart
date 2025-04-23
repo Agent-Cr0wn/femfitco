@@ -12,18 +12,17 @@ class BottomNavScaffold extends StatefulWidget {
 
 class _BottomNavScaffoldState extends State<BottomNavScaffold> {
   // Calculates the selected index based on the current route location
-  int _calculateSelectedIndex(BuildContext context) {
+    int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).matchedLocation;
     if (location.startsWith('/workout')) {
       return 0;
     }
-    if (location.startsWith('/profile')) {
+    if (location.startsWith('/progress')) {
       return 1;
     }
-    // Add cases for other top-level routes managed by the shell
-    // if (location.startsWith('/nutrition')) {
-    //   return 2; // Example
-    // }
+    if (location.startsWith('/profile')) {
+      return 2;
+    }
     return 0; // Default to the first tab if no match
   }
 
@@ -34,12 +33,11 @@ class _BottomNavScaffoldState extends State<BottomNavScaffold> {
         context.go('/workout');
         break;
       case 1:
+        context.go('/progress');
+        break;
+      case 2:
         context.go('/profile');
         break;
-      // Add navigation for other tabs
-      // case 2:
-      //   context.go('/nutrition');
-      //   break;
     }
   }
 
@@ -54,20 +52,19 @@ class _BottomNavScaffoldState extends State<BottomNavScaffold> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.fitness_center_outlined),
-            activeIcon: Icon(Icons.fitness_center), // Optional: different icon when active
+            activeIcon: Icon(Icons.fitness_center),
             label: 'Workout',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.trending_up_outlined),
+            activeIcon: Icon(Icons.trending_up),
+            label: 'Progress',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
-             activeIcon: Icon(Icons.person),
+            activeIcon: Icon(Icons.person),
             label: 'Profile',
           ),
-          // Add items for Nutrition, Community, etc. here
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.restaurant_menu_outlined),
-          //   activeIcon: Icon(Icons.restaurant_menu),
-          //   label: 'Nutrition',
-          // ),
         ],
         currentIndex: currentIndex,
         onTap: (index) => _onItemTapped(index, context),

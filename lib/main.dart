@@ -4,13 +4,16 @@ import 'package:go_router/go_router.dart'; // Import GoRouter
 import 'app/router.dart';
 import 'common/constants/colors.dart';
 import 'features/auth/providers/auth_provider.dart';
+import 'features/progress/providers/progress_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    // Create AuthProvider instance once
-    ChangeNotifierProvider(
-      create: (context) => AuthProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthProvider()),
+        ChangeNotifierProvider(create: (context) => ProgressProvider()),
+      ],
       child: const FemFitApp(),
     ),
   );

@@ -11,6 +11,7 @@ import '../features/profile/screens/profile_screen.dart';
 import '../features/subscription/screens/subscription_screen.dart';
 import '../common/widgets/bottom_nav_scaffold.dart';
 import '../common/screens/splash_screen.dart';
+import '../features/progress/screens/progress_screen.dart';
 
 class AppRouter {
   static final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -69,6 +70,11 @@ class AppRouter {
               path: '/workout',
               name: 'workout',
               builder: (context, state) => const WorkoutDashboardScreen(),
+            ),
+            GoRoute(
+              path: '/progress',
+              name: 'progress',
+              builder: (context, state) => const ProgressScreen(),
             ),
             GoRoute(
               path: '/profile',
